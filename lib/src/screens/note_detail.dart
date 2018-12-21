@@ -33,13 +33,11 @@ class NoteDetailState extends State<NoteDetail> {
     //wrapping the scaffold with WillPopScope() lets us control what happens
     //when the user presses the back button using onWillPop()
     return WillPopScope(
-
-      onWillPop: (){
+      onWillPop: () {
         //get's executed when user presses back button
         print("back button pressed!");
         Navigator.pop(context);
       },
-
       child: Scaffold(
         appBar: AppBar(
           title: Text('$appBarTitle'),
@@ -52,17 +50,17 @@ class NoteDetailState extends State<NoteDetail> {
               ListTile(
                 //title is a dropDownButton
                 title: DropdownButton(
-                  //items take _priorities and maps them to dropDownStringItem
-                  //of String type
+                    //items take _priorities and maps them to dropDownStringItem
+                    //of String type
                     items: _priorities.map((String dropDownStringItem) {
                       return DropdownMenuItem<String>(
                         //value is dropDownStringItem and so is text
                         value: dropDownStringItem,
                         child: Text(dropDownStringItem),
                       );
-                    }).toList(),//laid out as a list of items
+                    }).toList(), //laid out as a list of items
                     style: textStyle,
-                    value: 'Low',//default value to Low
+                    value: 'Low', //default value to Low
                     onChanged: (valueSelectedByUser) {
                       setState(() {
                         debugPrint('User selected $valueSelectedByUser');
@@ -111,7 +109,7 @@ class NoteDetailState extends State<NoteDetail> {
                   children: <Widget>[
                     Expanded(
                       child: RaisedButton(
-                        color: Theme.of(context).primaryColorDark,
+                        color: Theme.of(context).primaryColor,
                         textColor: Theme.of(context).primaryColorLight,
                         child: Text(
                           'Save',
@@ -129,7 +127,7 @@ class NoteDetailState extends State<NoteDetail> {
                     ),
                     Expanded(
                       child: RaisedButton(
-                        color: Theme.of(context).primaryColorDark,
+                        color: Theme.of(context).primaryColor,
                         textColor: Theme.of(context).primaryColorLight,
                         child: Text(
                           'Delete',

@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.purple,
         accentColor: Colors.purple,
+
       ),
       title: "NoteList",
       home: NoteList(),
