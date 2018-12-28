@@ -5,7 +5,7 @@ class Note{
   String _title, _description, _date;
 
   //regular constructor. _priority is optional
-  Note(this._id, this._title, this._description, this._date, [this._priority]);
+  Note(this._title, this._description, this._date, [this._priority]);
 
   //named constructor that accepts ID
   Note.withId(this._id, this._title, this._description, this._date, [this._priority]);
