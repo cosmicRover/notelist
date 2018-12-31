@@ -13,9 +13,14 @@ class NoteList extends StatefulWidget {
 
 class _NoteListState extends State<NoteList> {
   DatabaseHelper databaseHelper = DatabaseHelper();
+
+  //a list that takes note items
   List<Note> noteList;
+
+  //count for the listViewBuilder
   int count = 0;
 
+  //calling updateListView on app startup
   @override
   void initState() {
     super.initState();
@@ -130,12 +135,14 @@ class _NoteListState extends State<NoteList> {
     }
   }
 
+  //updates the listView using the values from the database
   void updateListView(){
     final Future<Database> dbFuture = databaseHelper.initializeDatabase();
     dbFuture.then((database){
       Future<List<Note>> noteListFuture = databaseHelper.getNoteList();
       noteListFuture.then((noteList){
         setState(() {
+          //setting the two vars that will render our listView
           this.noteList = noteList;
           this.count = noteList.length;
         });

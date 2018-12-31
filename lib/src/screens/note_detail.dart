@@ -202,24 +202,27 @@ class NoteDetailState extends State<NoteDetail> {
     note.description = descriptionController.text;
   }
 
+  //func to save the note
   void _save() async {
-    Navigator.pop(context, true);
+    Navigator.pop(context, true);//takes back
 
+    //setting the date using the intl.dart package
     note.date = DateFormat.yMMMd().format(DateTime.now());
     int result;
+
     if (note.id != null) {
-      result = await helper.updateNote(note);
+      result = await helper.updateNote(note);//if id exits, it's an update op
     } else {
-      result = await helper.insertNote(note);
+      result = await helper.insertNote(note);//if no id, insert note into array
     }
 
-    if (result != 0) {
-      _showAlertDialog("Status", "Saved!");
-    } else {
-      _showAlertDialog("Status", "Couldn't save");
-    }
+    //showing a dialogue box based on the response var
+    result != 0
+        ? _showAlertDialog('Status', "Note deleted")
+        : _showAlertDialog('Status', "Error occoured");
   }
 
+  //func to delete node
   void _delete() async {
 
     Navigator.pop(context, true);
@@ -228,13 +231,16 @@ class NoteDetailState extends State<NoteDetail> {
       _showAlertDialog("Status", "No note deleted");
     }
 
+    //deletes the actual note if note id exits
     int result = await helper.deleteNote(note.id);
 
+    //showing a dialogue box based on the response var
     result != 0
         ? _showAlertDialog('Status', "Note deleted")
         : _showAlertDialog('Status', "Error occoured");
   }
 
+  //simple dialogue box window
   void _showAlertDialog(String title, String message) {
     AlertDialog alertDialog = AlertDialog(
       title: Text(title),
